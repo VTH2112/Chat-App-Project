@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Style -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./Style/style.css">
     <!-- fontawesome-CDN -->
     <script src="https://kit.fontawesome.com/0886b0109d.js" crossorigin="anonymous"></script>
     <!-- jquery-CDN -->
@@ -36,6 +36,9 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
     <!-- FireBase-Config -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.8/firebase-auth-compat.js"></script>
     <script>
         const firebaseApp = firebase.initializeApp({
             apiKey: "AIzaSyAXxdV5faBVUweTdIKcBHTm14YMBhDeJV4",
@@ -49,9 +52,9 @@
         const auth = firebaseApp.auth();
     </script>
     <!-- ________________________________________________________________ -->
-    
-    <script src="./index.js" type="module"></script>
-    <script src="./querry.js"></script>
+
+    <script src="./Js/index.js" type="module"></script>
+    <script src="./Js/querry.js"></script>
 </body>
 
 </html>
