@@ -75,7 +75,7 @@ class Chat {
       db.collection("conversations").onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added") {
-            console.log("new conversation: ", change.doc.data());
+            // console.log("new conversation: ", change.doc.data());
           }
           if (change.type === "modified") {
             console.log("Modified conversation: ", change.doc.data());
