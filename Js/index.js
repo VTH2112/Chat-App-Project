@@ -7,7 +7,17 @@ const setScreen = (container) => {
     app.appendChild(container);
 }
 
-const signInScreen = new SignIn();
-setScreen(signInScreen.container)
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      var uid = user.uid;
+      location.replace("../Pages/chatUi/index.html")
+    } else {
+  
+        const signInScreen = new SignIn();
+        setScreen(signInScreen.container)
+    }
+  });
+
 
 export { setScreen }

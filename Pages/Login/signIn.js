@@ -124,6 +124,49 @@ class SignIn {
         } else {
             this.inputEmail.setErrMessage("");
         }
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed in
+
+            var user = userCredential.user;
+            console.log(`Sign in`);
+            console.dir(db.collection("users"))
+            db.collection("users").onSnapshot((snapshot) => {
+                snapshot.docChanges().forEach((change) => {
+                  if (change.type === "added") {
+                    if(firebase.auth().currentUser.email == change.doc.data().email){
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `Hi ${change.doc.data().name}`,
+                            showConfirmButton: false,
+                            timer: 1000
+                        })
+                    }
+                  }
+
+                  if (change.type === "modified") {
+              
+                  }
+                  if (change.type === "removed") {
+                   
+                  }
+                });
+              });
+   
+            
+
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if(errorCode === "auth/wrong-password"){
+                this.inputPassword.setErrorMessage("Wrong Password")
+            }
+            console.log(errorCode);
+        });
+
     }
 
     handleRegister = (e) => {
