@@ -52,21 +52,21 @@ class ConversationItem {
             this.nameChat.innerHTML=this.users
     }
   
-    // setOnClick = (listener) => {
-    //   this.container.onclick = () => {
-    //     listener(this.id, this.name, this.users);
-    //   };
-    // };
+    setOnClick = (listener) => {
+      this.contentDiv.onclick = () => {
+        listener(this.id, this.name, this.users);
+      };
+    };
   
-    // setActiveHighlight = (isHighlight) => {
-    //   if (isHighlight) {
-    //     this.container.style.background = "#ccc";
-    //     this.container.style.color = "#fff";
-    //   } else {
-    //     this.container.style.background = "#fff";
-    //     this.container.style.color = "#000";
-    //   }
-    // };
+    setActiveHighlight = (isHighlight) => {
+      if (isHighlight) {
+        this.contentDiv.style.background = "#404953";
+        this.contentDiv.style.color = "#f7f7f8";
+      } else {
+        this.contentDiv.style.background = "#363e47";
+        this.contentDiv.style.color = "#f7f7f8";
+      }
+    };
   }
   
   export { ConversationItem };
