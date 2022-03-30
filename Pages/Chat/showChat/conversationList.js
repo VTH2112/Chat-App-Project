@@ -41,6 +41,15 @@ class ConversationList {
       }
     });
   };
+  removedItem = (id) => {
+    // Update array
+    const index = this.conversations.findIndex((item) => item.id === id);
+    const conversation = this.conversations.find((item) => item.id === id);
+    this.conversations.splice(index, 1);
+
+    // Update UI
+    conversation.contentDiv.remove();
+  };
 
 
 }

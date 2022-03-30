@@ -67,7 +67,9 @@ class ConversationItem {
         this.contentDiv.style.color = "#f7f7f8";
       }
     };
+  
   }
   
+
   export { ConversationItem };
   
