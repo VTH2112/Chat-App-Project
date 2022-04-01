@@ -1,13 +1,12 @@
 import { ConversationItem } from "./conversationItem.js";
 
+const userMessages = document.querySelector(".row .chat-area");
 class ConversationList {
   container = document.createElement("div");
   onConversationItemClick;
   conversations = [];
 
-  constructor() {
-
-  }
+  constructor() {}
 
   setOnConversationItemClick = (listener) => {
     // this.onConversationItemClick = () => {};
@@ -17,20 +16,21 @@ class ConversationList {
   handleCreateConversationAdded = (id, name, users) => {
     const conversation = new ConversationItem(id, name, users);
     conversation.setOnClick((id, name, users) => {
-        // Get conversation information
-        console.log(id, name, users);
-  
-        this.onConversationItemClick({
-          id: id,
-          name: name,
-          users: users,
-        });
+      // Get conversation information
+      console.log(id, name, users);
+
+      this.onConversationItemClick({
+        id: id,
+        name: name,
+        users: users,
       });
- 
-      this.conversations.push(conversation);
+
+      userMessages.innerHTML = name;
+    });
+
+    this.conversations.push(conversation);
     this.container.appendChild(conversation.container);
   };
-
 
   setStyleActiveConversation = (conversation) => {
     this.conversations.forEach((item) => {
@@ -41,6 +41,7 @@ class ConversationList {
       }
     });
   };
+  
   removedItem = (id) => {
     // Update array
     const index = this.conversations.findIndex((item) => item.id === id);
@@ -50,8 +51,6 @@ class ConversationList {
     // Update UI
     conversation.contentDiv.remove();
   };
-
-
 }
 
 export { ConversationList };
