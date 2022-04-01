@@ -65,6 +65,7 @@ class Modal {
 
         this.createBtn.innerHTML="Create conversation"
         this.createBtn.setAttribute("class", "btn btn-primary")
+        this.createBtn.setAttribute("data-dismiss", "modal")
         this.createBtn.setAttribute("type", "button")
 
 
@@ -89,8 +90,6 @@ class Modal {
     // setOnclickCancel = (listener) => {
     //     this.btnCancel.onclick = listener;
     // };
-
-
 
     setOnclickCreate = (listener) => {
         this.createBtn.onclick = listener;

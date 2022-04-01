@@ -54,40 +54,7 @@ $(document).ready(function () {
     })
 
     
- 
-    $(".testUser").click(() => {
 
-        // firebase.auth().onAuthStateChanged((user) => {
-        //     if (user) {
-        //       var uid = user.uid;
-        //       db.collection("users").onSnapshot((snapshot) => {
-        //         snapshot.docChanges().forEach((change) => {
-        //           if (change.type === "added") {
-        //             if(firebase.auth().currentUser.email == change.doc.data().email){
-        //                 Swal.fire({
-        //                     position: 'center',
-        //                     icon: 'success',
-        //                     title: `Hi ${change.doc.data().name}`,
-        //                     showConfirmButton: false,
-        //                     timer: 1000
-        //                 })
-        //             }
-        //           }
-    
-        //           if (change.type === "modified") {
-              
-        //           }
-        //           if (change.type === "removed") {
-                   
-        //           }
-        //         });
-        //       });
-        //     } else {
-              
-        
-        //     }
-        //   });
-    })
     $("#nav_item1").click(function () {
         $("#nav_item1").css({
             "border-left": "3px solid #55d48b ",
