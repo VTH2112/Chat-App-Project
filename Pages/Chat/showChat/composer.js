@@ -53,7 +53,8 @@ class Composer {
             content: inputMsg.value,
             sender: firebase.auth().currentUser.email,
             conversationId: this.activeConversation.id,
-            chatCount : this.count++,
+            date : firebase.firestore.FieldValue.serverTimestamp(),
+            count : this.count ++
           });
           inputMsg.value = ""}
   
