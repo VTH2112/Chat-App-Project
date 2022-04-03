@@ -9,9 +9,10 @@ const setScreen = (container) => {
 }
 
 
-const chat = new ChatUser();
 
-setScreen(chat.container)
+      const chat = new ChatUser();
+
+      setScreen(chat.container)
 
 
 

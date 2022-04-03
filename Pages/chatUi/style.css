@@ -456,12 +456,18 @@ body {
     padding: 10px !important;
     
 }
-
+.chat-container-right{
+    display:flex;
+    justify-content:flex-end;
+    padding : 0 !important;
+}
 .chat-content-area-right {
     height: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin: 0!important;
+    padding:0 !important;
 }
 
 .chat-content-area-right p {

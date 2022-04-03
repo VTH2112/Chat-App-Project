@@ -1,6 +1,6 @@
 import { ConversationItem } from "./conversationItem.js";
 
-const userMessages = document.querySelector(".row .chat-area");
+const userMessages = document.querySelector(".nameChat");
 class ConversationList {
   container = document.createElement("div");
   onConversationItemClick;
