@@ -47,9 +47,7 @@ class ChatUser {
         db.collection("conversations").onSnapshot((snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added") {
-                    console.log("New conversation: ", change.doc.data());
-
-                    firebase.auth().onAuthStateChanged((user) => {
+                    firebaseApp.auth().onAuthStateChanged((user) => {
                         if (user.email == change.doc.data().users) {
                             // User is signed in, see docs for a list of available properties
                             // https://firebase.google.com/docs/reference/js/firebase.User
@@ -92,10 +90,12 @@ class ChatUser {
         // Connect to listen
         this.subcribeConversationMessages = db
             .collection("messages")
-            .where("conversationId", "==", this.activeConversation.id)
+            .where("conversationId", "==", this.activeConversation.id).orderBy("date")
             .onSnapshot((snapshot) => {
                 snapshot.docChanges().forEach((change) => {
-                    this.messageList.addMessage(change.doc.data());
+                    if ((change.type) === "added" ){
+                        this.messageList.addMessage(change.doc.data());
+                    }
                 });
             });
         // => Function()
