@@ -8,6 +8,8 @@ import {
     MessageList
 } from "./messageList.js";
 const chatAreaPrint = document.querySelector(".chat-area ")
+let reconvID = "";
+let convID ="";
 class ChatUser {
     nameArr = []
     activeConversation;
@@ -44,7 +46,7 @@ class ChatUser {
         this.subcribeConversationMessageList();
     };
     subcribeConversation = () => {
-        db.collection("conversations").onSnapshot((snapshot) => {
+        db.collection("conversations").orderBy("updateDate","desc").onSnapshot((snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added") {
                     firebaseApp.auth().onAuthStateChanged((user) => {
@@ -69,7 +71,21 @@ class ChatUser {
             
                 }
                 if (change.type === "modified") {
-                    console.log("Modified conversation: ", change.doc.data());
+                    convID = change.doc.id;
+                    console.log("convID: ", convID);
+                    console.log("reconvID: ", reconvID);
+                    if(convID !== reconvID){
+                        this.conversationList.removedItem(change.doc.id);
+                        this.conversationList.container.innerHTML =""
+                        this.conversationList.reranking(
+                            change.doc.id,
+                            change.doc.data().name,
+                            change.doc.data().users
+                        );
+                        reconvID = convID;
+                        console.log("reranking");
+                    }
+
                 }
                 if (change.type === "removed") {
                     console.log("Removed conversation: ", change.doc.data());

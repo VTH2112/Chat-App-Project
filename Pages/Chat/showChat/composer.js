@@ -54,8 +54,15 @@ class Composer {
             sender: firebase.auth().currentUser.email,
             conversationId: this.activeConversation.id,
             date : firebase.firestore.FieldValue.serverTimestamp(),
-            count : this.count ++
-          });
+            count : this.count++,
+          })
+          db.collection("conversations").doc(this.activeConversation.id).update({
+            updateDate : firebase.firestore.FieldValue.serverTimestamp()
+          })
+          .then(() => {
+              console.log("Document successfully updated!");
+          });         
+          ;
           inputMsg.value = ""}
   
           

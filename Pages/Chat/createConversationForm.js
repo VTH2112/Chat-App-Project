@@ -25,6 +25,7 @@ class CreateConversationForm {
     db.collection("conversations").add({
       name: name,
       users: [firebase.auth().currentUser.email],
+      updateDate: firebase.firestore.FieldValue.serverTimestamp()
     });
 
 
