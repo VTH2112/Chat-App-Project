@@ -7,7 +7,11 @@ import {
 import {
     MessageList
 } from "./messageList.js";
+import {
+    UserList
+} from "./UserList.js";
 const chatAreaPrint = document.querySelector(".chat-area ")
+const userList = document.querySelector(".chat_right ")
 let reconvID = "";
 let convID ="";
 class ChatUser {
@@ -21,6 +25,7 @@ class ChatUser {
 
     composer = new Composer();
     messageList = new MessageList();
+    userList = new UserList();
     constructor() {
         this.container.appendChild(this.conversationList.container);
         this.conversationList.setOnConversationItemClick(
@@ -29,6 +34,7 @@ class ChatUser {
 
 
         this.printChatArea();
+        userList.appendChild(this.userList.container)
         this.subcribeConversation();
     }
 
@@ -40,6 +46,7 @@ class ChatUser {
         this.composer.setActiveConversation(conversation);
         this.conversationList.setStyleActiveConversation(conversation);
         this.messageList.clearMessage();
+        this.userList.setActiveConversation(conversation)
         this.subcribeConversationMessageList();
     };
     subcribeConversation = () => {
@@ -50,9 +57,9 @@ class ChatUser {
                                firebaseApp.auth().onAuthStateChanged((user) => {
                         if (user.email == userArr) {
                             var uid = user.uid;
-                            console.log(user.email);
-                            console.log(userArr);
-                            console.log(change.doc.data().users);
+                            // console.log(user.email);
+                            // console.log(userArr);
+                            // console.log(change.doc.data().users);
                             this.conversationList.handleCreateConversationAdded(
                                 change.doc.id,
                                 change.doc.data().name,
@@ -68,8 +75,6 @@ class ChatUser {
                 }
                 if (change.type === "modified") {
                     convID = change.doc.id;
-                    console.log("convID: ", convID);
-                    console.log("reconvID: ", reconvID);
                     if(convID !== reconvID){
                         this.conversationList.removedItem(change.doc.id);
                         this.conversationList.container.innerHTML =""
@@ -81,6 +86,11 @@ class ChatUser {
                         reconvID = convID;
                         console.log("reranking");
                     }
+                    this.userList.setActiveConversation({
+                        id: change.doc.id,
+                        name: change.doc.data().name,
+                        users: change.doc.data().users,
+                      });
 
                 }
                 if (change.type === "removed") {

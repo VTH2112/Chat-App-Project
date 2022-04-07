@@ -51,13 +51,16 @@ class ConversationItem {
             this.contentChatBox.appendChild(this.nameChat)
             this.contentChatBox.appendChild(this.chatText)
     
-            this.pingChat.setAttribute("class","col-lg-2 ping_chat_box")
+            this.pingChat.setAttribute("class","col-lg-2")
+            this.pingChat.innerHTML = "<i class='fa fa-user-plus' aria-hidden='true'></i>"
+            this.pingChat.style.fontSize = "25px"
+            this.pingChat.style.color = "#00c1a6"
             this.pingChat.appendChild(this.pingChatText)
 
 
         
           this.users.forEach((userArr) => {
-            console.log(userArr);
+            // console.log(userArr);
             if(userArr != firebase.auth().currentUser.email){
               this.chatText.innerHTML= this.name
               this.nameChat.innerHTML=userArr
@@ -80,9 +83,12 @@ class ConversationItem {
       addUserBtn.addEventListener('click', () =>{
         const newUserList = this.users.concat(addUserInputModal.value);
 
+        console.log(newUserList);
+        console.log(this.id);
         db.collection("conversations").doc(this.id).update({
           users: newUserList,
         });
+
       })
     }
   

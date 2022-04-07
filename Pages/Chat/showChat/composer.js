@@ -22,8 +22,8 @@ class Composer {
           alert("Select a chat first");
           return;
         } else {
-          if(inputMsg.value.keyCode === 32){
-              alert("Please enter your message")
+          if(inputMsg.value.trim() === ""){
+              //alert("Please enter your message")
           }
           else{        
               db.collection("messages").add({
