@@ -12,17 +12,10 @@ class Modal {
 
     closeBtn = document.createElement("button")
     createBtn = document.createElement("button")
-
-    // btnCreate = document.createElement("button");
-    // btnCancel = document.createElement("button");
-
     constructor() {
 
         this.container.appendChild(this.modalContainer);
 
-        // this.modalContainer.appendChild(this.header);
-        // this.modalContainer.appendChild(this.body);
-        // this.modalContainer.appendChild(this.footer);
 
         this.modalContainer.setAttribute("class", "modal fade")
         this.modalContainer.setAttribute("id", "modalCenter")
@@ -67,29 +60,13 @@ class Modal {
         this.createBtn.setAttribute("class", "btn btn-primary")
         this.createBtn.setAttribute("data-dismiss", "modal")
         this.createBtn.setAttribute("type", "button")
-
-
-        // this.btnCreate.innerHTML = "Create";
-        // this.btnCancel.innerHTML = "Cancel";
-        // this.modalContainer.appendChild(this.btnCancel);
-        // this.modalContainer.appendChild(this.btnCreate);
-
-        // this.btnCancel.setAttribute("class", "btn btn-primary ")
-        // this.btnCreate.setAttribute("class", "btn btn-primary ")
     }
 
-    // setHeader = (title) => {
-    //     this.header.innerHTML = title;
-    // };
 
     setBody = (component) => {
         this.body.innerHTML = "";
         this.body.appendChild(component);
     };
-
-    // setOnclickCancel = (listener) => {
-    //     this.btnCancel.onclick = listener;
-    // };
 
     setOnclickCreate = (listener) => {
         this.createBtn.onclick = listener;

@@ -12,6 +12,7 @@ let reconvID = "";
 let convID ="";
 class ChatUser {
     nameArr = []
+    userArr = []
     activeConversation;
     subcribeConversationMessages = null;
 
@@ -29,9 +30,6 @@ class ChatUser {
 
         this.printChatArea();
         this.subcribeConversation();
-        // this.clearChat();
-
-
     }
 
     printChatArea = () => {
@@ -39,7 +37,6 @@ class ChatUser {
     }
     setActiveConversation = (conversation) => {
         this.activeConversation = conversation;
-        // this.conversationInfor.setName(conversation.name);
         this.composer.setActiveConversation(conversation);
         this.conversationList.setStyleActiveConversation(conversation);
         this.messageList.clearMessage();
@@ -49,12 +46,12 @@ class ChatUser {
         db.collection("conversations").orderBy("updateDate","desc").onSnapshot((snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added") {
-                    firebaseApp.auth().onAuthStateChanged((user) => {
-                        if (user.email == change.doc.data().users) {
-                            // User is signed in, see docs for a list of available properties
-                            // https://firebase.google.com/docs/reference/js/firebase.User
+                    change.doc.data().users.forEach((userArr) => {
+                               firebaseApp.auth().onAuthStateChanged((user) => {
+                        if (user.email == userArr) {
                             var uid = user.uid;
                             console.log(user.email);
+                            console.log(userArr);
                             console.log(change.doc.data().users);
                             this.conversationList.handleCreateConversationAdded(
                                 change.doc.id,
@@ -63,11 +60,10 @@ class ChatUser {
                             );
 
                         } else {
-                            // User is signed out
-                            // Set default screen
 
                         }
                     });
+                      });
             
                 }
                 if (change.type === "modified") {
@@ -94,16 +90,12 @@ class ChatUser {
             });
         });
     };
-    // clearChat = () => {
-    //     this.container.innerHTML = "";
-    //   };
+
 
     subcribeConversationMessageList = () => {
         if (this.subcribeConversationMessages !== null) {
             this.subcribeConversationMessages();
         }
-
-        // Connect to listen
         this.subcribeConversationMessages = db
             .collection("messages")
             .where("conversationId", "==", this.activeConversation.id).orderBy("date")
@@ -114,7 +106,6 @@ class ChatUser {
                     }
                 });
             });
-        // => Function()
     };
 
 }

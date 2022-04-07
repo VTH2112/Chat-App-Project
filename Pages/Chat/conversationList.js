@@ -18,13 +18,6 @@ class ConversationList {
     this.container.appendChild(this.btnCreateConversation);
     this.container.appendChild(this.createConversationForm.container);
   }
-
-
-
-  handleVisible = () => {
-    this.createConversationForm.setVisible(true)
-
-  };
   
 }
 

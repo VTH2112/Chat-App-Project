@@ -1,3 +1,8 @@
+import { InputCommon } from "../inputCommon.js";
+const addUserInputModal = document.querySelector(".userEmail")
+const addUserInputModalLable = document.querySelector(".chatUserLable")
+const userMessages = document.querySelector(".nameChat");
+const addUserBtn = document.querySelector(".addUser")
 class ConversationItem {
     id;
     name;
@@ -15,18 +20,22 @@ class ConversationItem {
     chatText = document.createElement("p")
     pingChat = document.createElement("div")
     pingChatText = document.createElement("span")
-  
+    addUser = new InputCommon(
+      "text",
+      "Enter your conversation name",
+      "conversationName"
+    );
     constructor(id, name, users) {
       this.id = id;
       this.name = name;
       this.users = users;
   
-      this.txtName.innerHTML = name;
-      this.txtNoOfUsers.innerHTML = `( ${users.length} )`;
 
 
        this.container.appendChild(this.contentDiv)
             this.contentDiv.setAttribute("class", "row chat_box")
+            this.contentDiv.setAttribute("data-toggle","modal")
+            this.contentDiv.setAttribute("data-target","#exampleModal")
     
             this.contentDiv.appendChild(this.avatarChat)
             this.contentDiv.appendChild(this.contentChatBox)
@@ -44,19 +53,38 @@ class ConversationItem {
     
             this.pingChat.setAttribute("class","col-lg-2 ping_chat_box")
             this.pingChat.appendChild(this.pingChatText)
+
+
         
-    //   this.container.setAttribute("class", "col-lg-12")
-    //   this.container.appendChild(this.txtName);
-    //   this.container.appendChild(this.txtNoOfUsers);
-            this.chatText.innerHTML= this.name
-            this.nameChat.innerHTML=this.users
+          this.users.forEach((userArr) => {
+            console.log(userArr);
+            if(userArr != firebase.auth().currentUser.email){
+              this.chatText.innerHTML= this.name
+              this.nameChat.innerHTML=userArr
+            }
+            else{
+              this.chatText.innerHTML= this.name
+            }
+          })
     }
   
+
+
     setOnClick = (listener) => {
       this.contentDiv.onclick = () => {
         listener(this.id, this.name, this.users);
+        this.setAddUserBtn()
       };
     };
+    setAddUserBtn = () => {
+      addUserBtn.addEventListener('click', () =>{
+        const newUserList = this.users.concat(addUserInputModal.value);
+
+        db.collection("conversations").doc(this.id).update({
+          users: newUserList,
+        });
+      })
+    }
   
     setActiveHighlight = (isHighlight) => {
       if (isHighlight) {
@@ -67,7 +95,6 @@ class ConversationItem {
         this.contentDiv.style.color = "#f7f7f8";
       }
     };
-  
   }
   
 

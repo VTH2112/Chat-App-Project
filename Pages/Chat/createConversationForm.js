@@ -39,10 +39,6 @@ class CreateConversationForm {
   };
   
 
-  setVisible = (visible) => {
-    if (visible) this.container.style.visibility = "visible";
-    else this.container.style.visibility = "hidden";
-  };
 }
 
 export { CreateConversationForm };

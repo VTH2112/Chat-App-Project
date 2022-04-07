@@ -1,22 +1,23 @@
 import { ConversationItem } from "./conversationItem.js";
 
+
 const userMessages = document.querySelector(".nameChat");
+const pingChat = document.querySelector(".ping_chat_box")
 class ConversationList {
   container = document.createElement("div");
   onConversationItemClick;
   conversations = [];
 
+
   constructor() {}
 
   setOnConversationItemClick = (listener) => {
-    // this.onConversationItemClick = () => {};
     this.onConversationItemClick = listener;
   };
 
   handleCreateConversationAdded = (id, name, users) => {
     const conversation = new ConversationItem(id, name, users);
     conversation.setOnClick((id, name, users) => {
-      // Get conversation information
       console.log(id, name, users);
 
       this.onConversationItemClick({
@@ -24,8 +25,9 @@ class ConversationList {
         name: name,
         users: users,
       });
+      userMessages.innerHTML = name
+      
 
-      userMessages.innerHTML = name;
     });
 
     this.conversations.push(conversation);
@@ -43,16 +45,14 @@ class ConversationList {
   };
   
   removedItem = (id) => {
-    // Update array
     const index = this.conversations.findIndex((item) => item.id === id);
     const conversation = this.conversations.find((item) => item.id === id);
     this.conversations.splice(index, 1);
-
-    // Update UI
     conversation.contentDiv.remove();
   };
+
+
   reranking(inId, inName, inUsers){
-        // Update UI
     this.conversations.forEach((item) => {
       item.contentDiv.remove();
     });
@@ -61,7 +61,6 @@ class ConversationList {
     this.conversations.forEach((item) => {
       const conversation = new ConversationItem(item.id, item.name, item.users);
       conversation.setOnClick((id, name, users) => {
-        // Get conversation information
         this.onConversationItemClick({
           id: id,
           name: name,
@@ -69,6 +68,7 @@ class ConversationList {
         });
         userMessages.innerHTML = name;
       });
+      
       this.container.appendChild(conversation.container);
     });
 

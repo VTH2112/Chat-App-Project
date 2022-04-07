@@ -210,9 +210,25 @@ body {
     border:1px solid #626d78 !important;
     color:white;
 }
+.head_center_chat_right .btnAdd{
+    border-radius: 50%;
+    margin: 0px !important;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#626d78;
+    border:1px solid #626d78 !important;
+    color:white;
+}
 .input_head_left .btnAdd:hover{
     background-color:#626d78;
 }
+.head_center_chat_right .btnAdd:hover{
+    background-color:#626d78;
+}
+
 .input-group-text {
     color: #646f79 !important;
 }
@@ -222,6 +238,13 @@ body {
     border-radius: 30px;
 }
 .input_head_left .btnAdd:focus {
+    outline: #414b54;
+    border-left: 0px;
+    box-shadow: none;
+    background-color:#626d78 !important;
+}
+
+.head_center_chat_right .btnAdd:focus {
     outline: #414b54;
     border-left: 0px;
     box-shadow: none;
@@ -270,6 +293,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+   
 }
 
 .content_chat_box {
@@ -359,10 +383,12 @@ body {
 
 .chat-area {
     background-color: #f2f7f7;
+    width:100%;
     height: 77.9%;
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
+    align-content: flex-end;
+    justify-content: center;
     overflow-y: hidden;
 }
 
@@ -434,6 +460,7 @@ body {
 
 .avatar_chat_area {
     height: 100%;
+    padding:5px !important;
 }
 
 .chat-content-area {
@@ -457,8 +484,16 @@ body {
     
 }
 .chat-container-right{
+    width: 100%;
     display:flex;
     justify-content:flex-end;
+    padding : 0 !important;
+}
+
+.chat-container-left{
+    width: 100%;
+    display:flex;
+    justify-content:flex-start;
     padding : 0 !important;
 }
 .chat-content-area-right {
@@ -469,7 +504,25 @@ body {
     margin: 0!important;
     padding:0 !important;
 }
-
+.chat-content-area-left {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0!important;
+    padding:0 !important;
+}
+.chat-content-area-left p {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #51d388;
+    height: auto;
+    width: auto;
+    padding: 10px !important;
+    border-radius: 25px;
+    word-break: break-all
+}
 .chat-content-area-right p {
     display: flex;
     align-items: center;

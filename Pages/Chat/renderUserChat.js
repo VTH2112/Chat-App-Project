@@ -11,7 +11,6 @@ const setScreenUserChat = (container) => {
 
 
 const setScreenCreateConversation = (container) => {
-    // createConversation.innerHTML = ""
     createConversation.appendChild(container)
 }
 
