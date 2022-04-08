@@ -206,7 +206,7 @@ class Register {
 
         //console.log(checkRules);
 
-        db.collection("userInfor").add({
+        db.collection("users").add({
             email: email,
             name: nameUser,
             password: password,

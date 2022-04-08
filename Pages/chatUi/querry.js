@@ -22,10 +22,15 @@ $(document).ready(function () {
         $(".input-group-search").css("box-shadow", "none");
     })
     $("#nav_Active").click(function () {
-        $(".user_page").fadeOut(1000);
-        $(".chat_left").fadeIn(1000);
-        $(".chat_center").fadeIn(1000);
-        $(".chat_right").fadeIn(1000);
+
+        $(".user_page").fadeOut(500);
+        $(".chat_left").fadeIn(500);
+        $(".chat_center").fadeIn(500);
+        $(".chat_right").fadeIn(500);
+        $(".user_page").attr('hidden','true');
+        $(".chat_left").removeAttr('hidden');
+        $(".chat_center").removeAttr('hidden');
+        $(".chat_right").removeAttr('hidden');
         $("#nav_Active").css({
             "background-color": "#363e47",
             "color": "#f7f7f8"
@@ -73,13 +78,19 @@ $(document).ready(function () {
         
     })
 
-    
 
+    if($(".chat_left")[0].hidden == false ){
+        $(".user_page")[0].hidden = true
+    }
     $("#nav_item1").click(function () {
-        $(".chat_left").fadeOut(1000);
-        $(".chat_center").fadeOut(1000);
-        $(".chat_right").fadeOut(1000);
-        $(".user_page").fadeIn(1500);
+        $(".chat_left").attr('hidden','true');
+        $(".chat_center").attr('hidden','true');
+        $(".chat_right").attr('hidden','true');
+        $(".chat_left").fadeOut(500);
+        $(".chat_center").fadeOut(500);
+        $(".chat_right").fadeOut(500);
+        $(".user_page").fadeIn(500);
+        $(".user_page").removeAttr('hidden');
         $("#nav_item1").css({
             "border-left": "3px solid #55d48b ",
             "background-color": "#363e47",

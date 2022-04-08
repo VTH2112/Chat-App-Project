@@ -73,26 +73,26 @@ class ChatUser {
                     });
 
                 }
-                if (change.type === "modified") {
-                    convID = change.doc.id;
-                    if (convID !== reconvID) {
-                        this.conversationList.removedItem(change.doc.id);
-                        this.conversationList.container.innerHTML = ""
-                        this.conversationList.reranking(
-                            change.doc.id,
-                            change.doc.data().name,
-                            change.doc.data().users
-                        );
-                        reconvID = convID;
-                        console.log("reranking");
-                    }
-                    this.userList.setActiveConversation({
-                        id: change.doc.id,
-                        name: change.doc.data().name,
-                        users: change.doc.data().users,
-                    });
+                // if (change.type === "modified") {
+                //     convID = change.doc.id;
+                //     if (convID !== reconvID) {
+                //         this.conversationList.removedItem(change.doc.id);
+                //         this.conversationList.container.innerHTML = ""
+                //         this.conversationList.reranking(
+                //             change.doc.id,
+                //             change.doc.data().name,
+                //             change.doc.data().users
+                //         );
+                //         reconvID = convID;
+                //         console.log("reranking");
+                //     }
+                //     this.userList.setActiveConversation({
+                //         id: change.doc.id,
+                //         name: change.doc.data().name,
+                //         users: change.doc.data().users,
+                //     });
 
-                }
+                // }
                 if (change.type === "removed") {
                     console.log("Removed conversation: ", change.doc.data());
                     this.conversationList.removedItem(change.doc.id);

@@ -62,29 +62,29 @@ class ConversationList {
   };
 
 
-  reranking(inId, inName, inUsers){
-    this.conversations.forEach((item) => {
-      item.contentDiv.remove();
-    });
-    const conversation = new ConversationItem(inId, inName, inUsers);
-    this.conversations.unshift(conversation);
-    this.conversations.forEach((item) => {
-      const conversation = new ConversationItem(item.id, item.name, item.users);
-      conversation.setOnClick((id, name, users) => {
-        this.onConversationItemClick({
-          id: id,
-          name: name,
-          users: users,
-        });
-        userMessages.innerHTML = name;
-      });
+  // reranking(inId, inName, inUsers){
+  //   this.conversations.forEach((item) => {
+  //     item.contentDiv.remove();
+  //   });
+  //   const conversation = new ConversationItem(inId, inName, inUsers);
+  //   this.conversations.unshift(conversation);
+  //   this.conversations.forEach((item) => {
+  //     const conversation = new ConversationItem(item.id, item.name, item.users);
+  //     conversation.setOnClick((id, name, users) => {
+  //       this.onConversationItemClick({
+  //         id: id,
+  //         name: name,
+  //         users: users,
+  //       });
+  //       userMessages.innerHTML = name;
+  //     });
       
-      this.container.appendChild(conversation.container);
-    });
+  //     this.container.appendChild(conversation.container);
+  //   });
 
 
 
-  }
+  // }
 }
 
 export { ConversationList };
