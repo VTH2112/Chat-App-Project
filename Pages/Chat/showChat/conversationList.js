@@ -6,6 +6,7 @@ const pingChat = document.querySelector(".ping_chat_box")
 class ConversationList {
   container = document.createElement("div");
   onConversationItemClick;
+  onClickUser;
   conversations = [];
 
 
@@ -13,10 +14,19 @@ class ConversationList {
 
   setOnConversationItemClick = (listener) => {
     this.onConversationItemClick = listener;
+    this.onClickUser=listener;
+
   };
 
   handleCreateConversationAdded = (id, name, users) => {
     const conversation = new ConversationItem(id, name, users);
+    conversation.setOnClickUser((id,name,users)=>{
+      this.onClickUser({
+        id: id,
+        name: name,
+        users: users,
+      });
+    });
     conversation.setOnClick((id, name, users) => {
       console.log(id, name, users);
 

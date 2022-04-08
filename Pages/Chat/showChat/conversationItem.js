@@ -34,8 +34,7 @@ class ConversationItem {
 
        this.container.appendChild(this.contentDiv)
             this.contentDiv.setAttribute("class", "row chat_box")
-            this.contentDiv.setAttribute("data-toggle","modal")
-            this.contentDiv.setAttribute("data-target","#exampleModal")
+           
     
             this.contentDiv.appendChild(this.avatarChat)
             this.contentDiv.appendChild(this.contentChatBox)
@@ -55,6 +54,8 @@ class ConversationItem {
             this.pingChat.innerHTML = "<i class='fa fa-user-plus' aria-hidden='true'></i>"
             this.pingChat.style.fontSize = "25px"
             this.pingChat.style.color = "#00c1a6"
+            this.pingChat.setAttribute("data-toggle","modal")
+            this.pingChat.setAttribute("data-target","#exampleModal")
             this.pingChat.appendChild(this.pingChatText)
 
 
@@ -76,20 +77,27 @@ class ConversationItem {
     setOnClick = (listener) => {
       this.contentDiv.onclick = () => {
         listener(this.id, this.name, this.users);
-        this.setAddUserBtn()
+
+      };
+    };
+
+    setOnClickUser = (listener) => {
+      this.pingChat.onclick = () => {
+        listener(this.id, this.name, this.users);
+        addUserBtn.addEventListener('click', () =>{
+          const newUserList = this.users.concat(addUserInputModal.value);
+          console.log(newUserList);
+          console.log(this.id);
+          db.collection("conversations").doc(this.id).update({
+            users: newUserList,
+          });
+  
+        })
+       
       };
     };
     setAddUserBtn = () => {
-      addUserBtn.addEventListener('click', () =>{
-        const newUserList = this.users.concat(addUserInputModal.value);
-
-        console.log(newUserList);
-        console.log(this.id);
-        db.collection("conversations").doc(this.id).update({
-          users: newUserList,
-        });
-
-      })
+ 
     }
   
     setActiveHighlight = (isHighlight) => {
