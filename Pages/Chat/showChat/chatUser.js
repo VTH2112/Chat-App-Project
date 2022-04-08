@@ -13,7 +13,7 @@ import {
 const chatAreaPrint = document.querySelector(".chat-area ")
 const userList = document.querySelector(".chat_right ")
 let reconvID = "";
-let convID ="";
+let convID = "";
 class ChatUser {
     nameArr = []
     userArr = []
@@ -50,34 +50,34 @@ class ChatUser {
         this.subcribeConversationMessageList();
     };
     subcribeConversation = () => {
-        db.collection("conversations").orderBy("updateDate","desc").onSnapshot((snapshot) => {
+        db.collection("conversations").orderBy("updateDate", "desc").onSnapshot((snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 if (change.type === "added") {
                     change.doc.data().users.forEach((userArr) => {
-                               firebaseApp.auth().onAuthStateChanged((user) => {
-                        if (user.email == userArr) {
-                            var uid = user.uid;
-                            // console.log(user.email);
-                            // console.log(userArr);
-                            // console.log(change.doc.data().users);
-                            this.conversationList.handleCreateConversationAdded(
-                                change.doc.id,
-                                change.doc.data().name,
-                                change.doc.data().users
-                            );
+                        firebaseApp.auth().onAuthStateChanged((user) => {
+                            if (user.email == userArr) {
+                                var uid = user.uid;
+                                // console.log(user.email);
+                                // console.log(userArr);
+                                // console.log(change.doc.data().users);
+                                this.conversationList.handleCreateConversationAdded(
+                                    change.doc.id,
+                                    change.doc.data().name,
+                                    change.doc.data().users
+                                );
 
-                        } else {
+                            } else {
 
-                        }
+                            }
+                        });
                     });
-                      });
-            
+
                 }
                 if (change.type === "modified") {
                     convID = change.doc.id;
-                    if(convID !== reconvID){
+                    if (convID !== reconvID) {
                         this.conversationList.removedItem(change.doc.id);
-                        this.conversationList.container.innerHTML =""
+                        this.conversationList.container.innerHTML = ""
                         this.conversationList.reranking(
                             change.doc.id,
                             change.doc.data().name,
@@ -90,7 +90,7 @@ class ChatUser {
                         id: change.doc.id,
                         name: change.doc.data().name,
                         users: change.doc.data().users,
-                      });
+                    });
 
                 }
                 if (change.type === "removed") {
@@ -111,7 +111,7 @@ class ChatUser {
             .where("conversationId", "==", this.activeConversation.id).orderBy("date")
             .onSnapshot((snapshot) => {
                 snapshot.docChanges().forEach((change) => {
-                    if ((change.type) === "added" ){
+                    if ((change.type) === "added") {
                         this.messageList.addMessage(change.doc.data());
                     }
                 });

@@ -56,7 +56,7 @@ class Register {
     cmKick = document.createElement('div');
 
     constructor() {
-        this.title.innerHTML = "Register";
+        this.title.innerHTML = "Passionate Chat Register";
 
         this.image.src = "../../Image/register.jpg"
 
@@ -197,12 +197,21 @@ class Register {
         // const inputPassword = 
         const email = this.inputEmail.getValue();
 
+        const phone = this.inputPhoneNumber.getValue();
+
         const password = this.inputPassword.getValue();
         const confirmPass = this.inputConfirmPassword.getValue();
 
         const nameUser = this.inputName.getValue();
 
         //console.log(checkRules);
+
+        db.collection("userInfor").add({
+            email: email,
+            name: nameUser,
+            password: password,
+            phoneNumber: phone,
+        })
 
         //validate name
         if (isValidName(nameUser) == 0) {
