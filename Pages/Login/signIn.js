@@ -35,7 +35,7 @@ class SignIn {
     google = document.createElement('a');
 
     constructor() {
-        this.title.innerHTML = "Login";
+        this.title.innerHTML = "Login To Passionate Chat";
 
         //this.imgDiv.classList.add('img-login');
         this.container.appendChild(this.image);

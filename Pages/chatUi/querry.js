@@ -1,4 +1,19 @@
 
+db.collection("user").get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        if (firebase.auth().currentUser.email == doc.data().email) {
+            renderUser(doc);
+        }
+    });
+})
+
+function renderUser(doc) {
+    $(".name").html(doc.data().name);
+    $(".phone").html(doc.data().phoneNumber);
+    $(".email").html(doc.data().email);
+    $(".password").html(doc.data().password);
+}
+
 $(document).ready(function () {
     $(".search_input").focus(function () {
         $(".input-group-search").css("box-shadow", "1px 1px 10px #888888");
@@ -7,9 +22,10 @@ $(document).ready(function () {
         $(".input-group-search").css("box-shadow", "none");
     })
     $("#nav_Active").click(function () {
-        $(".chat_left").show(1000);
-        $(".chat_center").show(1000);
-        $(".chat_right").show(1000);
+        $(".user_page").fadeOut(1000);
+        $(".chat_left").fadeIn(1000);
+        $(".chat_center").fadeIn(1000);
+        $(".chat_right").fadeIn(1000);
         $("#nav_Active").css({
             "background-color": "#363e47",
             "color": "#f7f7f8"
@@ -60,9 +76,10 @@ $(document).ready(function () {
     
 
     $("#nav_item1").click(function () {
-        $(".chat_left").hide(1000);
-        $(".chat_center").hide(1000);
-        $(".chat_right").hide(1000);
+        $(".chat_left").fadeOut(1000);
+        $(".chat_center").fadeOut(1000);
+        $(".chat_right").fadeOut(1000);
+        $(".user_page").fadeIn(1500);
         $("#nav_item1").css({
             "border-left": "3px solid #55d48b ",
             "background-color": "#363e47",

@@ -2,9 +2,14 @@ class UserList {
     activeConversation = null;
   
     container = document.createElement("div");
+    title = document.createElement("p");
     userList = document.createElement("ul");
   
     constructor() {
+      this.container.classList.add("userList");
+      this.title.classList.add("title");
+      this.title.innerHTML = "User list";
+      this.container.appendChild(this.title);
       this.container.appendChild(this.userList);
     }
   
